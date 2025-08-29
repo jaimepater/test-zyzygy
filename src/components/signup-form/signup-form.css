@@ -30,3 +30,8 @@
   cursor: not-allowed;
 }
 
+.signup-form-wrapper {
+  width: 100%;
+  max-width: 420px;
+}
+
