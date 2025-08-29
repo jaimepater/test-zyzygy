@@ -27,4 +27,4 @@ A simple, modern signup form built with React and TypeScript.
 ## ️ Restrictions & Limitations
 - **No third-party libraries** were allowed for this implementation.
 - **Unit tests** and code quality tools (ESLint, Prettier) were **not implemented** due to restrictions on installing external packages.
-- **Security features** like CAPTCHAgit branch -D main  were **not implemented** for the same reason.
+- **Security features** like CAPTCHA  were **not implemented** for the same reason.

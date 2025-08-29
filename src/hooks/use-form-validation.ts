@@ -9,6 +9,11 @@ interface FormState {
     password?: string;
     confirmPassword?: string;
   };
+  dirty: {
+    username: boolean;
+    password: boolean;
+    confirmPassword: boolean;
+  };
   isValid: boolean;
   isSubmitting: boolean;
 }
@@ -18,10 +23,15 @@ const initialState: FormState = {
   password: '',
   confirmPassword: '',
   errors: {},
+  dirty: {
+    username: false,
+    password: false,
+    confirmPassword: false,
+  },
   isValid: false,
   isSubmitting: false,
 };
-export type FormFields =  Omit<FormState, 'errors' | 'isValid' | 'isSubmitting'>;
+export type FormFields =  Omit<FormState, 'errors' | 'isValid' | 'isSubmitting' | 'dirty'>;
 
 type FormAction =
   | { type: 'SET_FIELD'; field: keyof FormFields; value: string }
@@ -29,14 +39,16 @@ type FormAction =
   | { type: 'SET_SUBMITTING'; isSubmitting: boolean }
   | { type: 'RESET_FORM' };
 
-
-
 const formReducer = (state: FormState, action: FormAction): FormState => {
   switch (action.type) {
     case 'SET_FIELD':
       return {
         ...state,
         [action.field]: action.value,
+        dirty: {
+          ...state.dirty,
+          [action.field]: true,
+        },
       };
     case 'SET_ERRORS':
       return {

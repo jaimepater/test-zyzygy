@@ -52,15 +52,6 @@ const SignupForm = () => {
         }
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            if (state.isValid && !state.isSubmitting) {
-                handleSubmit(e as any);
-            }
-        }
-    };
-
     return (
             <div className="signup-form-wrapper">
                 <h1 className="signup-title" id="signup-title">Create Your Account</h1>
@@ -81,6 +72,7 @@ const SignupForm = () => {
                         value={state.username}
                         onChange={handleInputChange('username')}
                         error={state.errors.username}
+                        dirty={state.dirty.username}
                         placeholder="Enter your username"
                         required
                     />
@@ -93,6 +85,7 @@ const SignupForm = () => {
                         value={state.password}
                         onChange={handleInputChange('password')}
                         error={state.errors.password}
+                        dirty={state.dirty.password}
                         placeholder="Enter your password"
                         required
                     />
@@ -105,6 +98,7 @@ const SignupForm = () => {
                         value={state.confirmPassword}
                         onChange={handleInputChange('confirmPassword')}
                         error={state.errors.confirmPassword}
+                        dirty={state.dirty.confirmPassword}
                         placeholder="Confirm your password"
                         required
                     />

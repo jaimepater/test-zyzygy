@@ -5,6 +5,7 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;
   required?: boolean;
+  dirty?: boolean;
 }
 
 const InputField = ({
@@ -16,7 +17,8 @@ const InputField = ({
   onChange,
   error,
   placeholder,
-  required = false
+  required = false,
+  dirty = false
 }: InputFieldProps) => {
   return (
     <div className="input-field">
@@ -31,12 +33,11 @@ const InputField = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className={`input ${error ? 'input-error' : ''}`}
-        aria-invalid={!!error}
-        aria-describedby={error ? `${id}-error` : undefined}
+        className={`input ${(error && dirty) ? 'input-error' : ''}`}
+        aria-invalid={!!error && dirty}
         required={required}
       />
-      {error && (
+      {(error && dirty) && (
         <div id={`${id}-error`} className="error-message" role="alert">
           {error}
         </div>
